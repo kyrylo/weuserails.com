@@ -1,0 +1,26 @@
+<%
+  description = "A categorized list of web apps built with Ruby on Rails. Discover web apps built with Ruby on Rails and explore what's possible to build with it."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: root_url,
+    og: { title: title, description: description, url: request.original_url },
+    twitter: { title: title,description: description },
+    prev: @prev_page ? root_path(page: @current_page - 1) : nil,
+    next: @next_page ? root_path(page: @current_page + 1) : nil
+  )
+%>
+
+<article class="article">
+  <ul class="site-list">
+    <% @sites.each do |site| %>
+      <li><%= render "shared/web_app", site: site %></li>
+    <% end %>
+  </ul>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %><%= link_to "◂ prev", root_path(page: @current_page - 1), class: "no-visited" %><% end %>
+    <% if @next_page %><%= link_to "next ▸", root_path(page: @current_page + 1), class: "no-visited" %><% end %>
+  </div>
+</article>

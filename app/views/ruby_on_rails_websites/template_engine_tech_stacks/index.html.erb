@@ -1,0 +1,46 @@
+<%
+  title = "template engines used by rails web apps"
+  description = "Browse Rails web apps that utilize template engines like ERB and Haml for rendering dynamic HTML views efficiently."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @template_engines.each do |template_engine| %>
+        <tr>
+          <td>
+            <%= link_to template_engine.name.downcase, template_engine_tech_stack_path(template_engine), class: "tag" %>
+          </td>
+          <td>
+            <% if template_engine.site_count > 0 %>
+              <%= template_engine.site_count %> <%= "web app".pluralize(template_engine.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

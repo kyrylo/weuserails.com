@@ -1,0 +1,33 @@
+<%
+  title = "rails web apps using the #{@background_job_library.name.downcase} background job library"
+  description = "A categorized list of Ruby on Rails web apps using the #{@background_job_library.name} background job library."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: background_job_library_tech_stack_url(@background_job_library.slug),
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+    prev: @prev_page ? background_job_library_tech_stack_url(@background_job_library.slug, page: @current_page - 1) : nil,
+    next: @next_page ? background_job_library_tech_stack_url(@background_job_library.slug, page: @current_page + 1) : nil
+  )
+%>
+
+<article class="article">
+  <%= render "shared/sites_by_technology", sites: @sites %>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %>
+      <%= link_to "◂ prev", background_job_library_tech_stack_path(page: @current_page - 1), class: "no-visited" %>
+    <% end %>
+    <% if @next_page %>
+      <%= link_to "next ▸", background_job_library_tech_stack_path(page: @current_page + 1), class: "no-visited" %>
+    <% end %>
+  </div>
+</article>

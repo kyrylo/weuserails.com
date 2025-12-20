@@ -1,0 +1,46 @@
+<%
+  title = "background job libraries used by rails web apps"
+  description = "Discover Rails web apps using background job libraries like Sidekiq & Solid Queue for async tasks: email, data processing, report generation, and more."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @background_job_libraries.each do |background_job_library| %>
+        <tr>
+          <td>
+            <%= link_to background_job_library.name.downcase, background_job_library_tech_stack_path(background_job_library), class: "tag" %>
+          </td>
+          <td>
+            <% if background_job_library.site_count > 0 %>
+              <%= background_job_library.site_count %> <%= "web app".pluralize(background_job_library.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

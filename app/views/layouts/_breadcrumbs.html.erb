@@ -1,0 +1,40 @@
+<% content_for :head do %>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        <% breadcrumbs.each_with_index do |crumb, i| %>
+          {
+            "@type": "ListItem",
+            "position": <%= i + 1 %>,
+            "name": "<%= crumb.name %>",
+            "item": "<%= crumb.path ? "https://weuserails.com#{crumb.path}" : request.original_url %>"
+          }<%= i+1 != breadcrumbs.size ? "," : "" %>
+        <% end %>
+      ]
+    }
+  </script>
+<% end %>
+
+<nav class="mb-2 breadcrumbs">
+  <ol class="breadcrumbs__list">
+    <% breadcrumb_size = breadcrumbs.size %>
+    <% breadcrumbs.each_with_index do |crumb, i| %>
+      <li class="breadcrumbs__item">
+        <% if crumb.link? %>
+          <%= link_to crumb.name, crumb.path, class: "breadcrumbs__link" %>
+        <% else %>
+          <span class="breadcrumbs__current">
+            <%= crumb.name %>
+          </span>
+        <% end %>
+
+        <% if i+1 != breadcrumb_size %>
+          <span class="breadcrumbs__separator">»</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</nav>
+

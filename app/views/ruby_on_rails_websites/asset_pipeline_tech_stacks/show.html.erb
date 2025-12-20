@@ -1,0 +1,33 @@
+<%
+  title = "rails web apps using the #{@asset_pipeline.name} asset pipeline"
+  description = "A categorized list of Ruby on Rails web apps using the #{@asset_pipeline.name} asset pipeline."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: asset_pipeline_tech_stack_url(@asset_pipeline.slug),
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+    prev: @prev_page ? asset_pipeline_tech_stack_url(@asset_pipeline.slug, page: @current_page - 1) : nil,
+    next: @next_page ? asset_pipeline_tech_stack_url(@asset_pipeline.slug, page: @current_page + 1) : nil
+  )
+%>
+
+<article class="article">
+  <%= render "shared/sites_by_technology", sites: @sites %>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %>
+      <%= link_to "◂ prev", asset_pipeline_tech_stack_path(page: @current_page - 1), class: "no-visited" %>
+    <% end %>
+    <% if @next_page %>
+      <%= link_to "next ▸", asset_pipeline_tech_stack_path(page: @current_page + 1), class: "no-visited" %>
+    <% end %>
+  </div>
+</article>

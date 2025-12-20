@@ -1,0 +1,55 @@
+<%
+  title = "rails web apps by category"
+  description = "Browse #{@sites_count} real-world Ruby on Rails web apps across #{@categories_count} categories. Find inspiration and examples for your next Rails project. Updated #{Time.current.strftime('%B %Y')}."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: categories_url,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <h1><%= title %></h1>
+
+  <nav class="mt-2">
+    <% ("A".."Z").each do |letter| %>
+      <% if params[:letter] == letter %>
+        <%= letter %>
+      <% else %>
+        <%= link_to letter, categories_path(letter: letter), class: "no-visited" %>
+      <% end %>
+    <% end %>
+
+    | <% if params[:letter].blank? %>
+        All
+      <% else %>
+        <%= link_to "All", categories_path, class: "no-visited" %>
+      <% end %>
+  </nav>
+
+  <% @categories.group_by { |c| c.name[0].upcase }.sort.each do |letter, categories| %>
+    <h2 class="mt-4"><%= letter %></h2>
+    <ul>
+      <% categories.each do |category| %>
+        <li class="mb-1">
+          <%= link_to category.name, category_path(category), class: "tag" %>
+          <span class="text-sm">(<%= category.sites_count %>)</span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if @categories.none? %>
+    <p class="no-data">no categories for the selected letter found</p>
+    <p><%= link_to "Reset", categories_path, class: "no-visited" %></p>
+  <% end %>
+</article>

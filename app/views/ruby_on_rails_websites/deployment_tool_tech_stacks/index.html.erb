@@ -1,0 +1,46 @@
+<%
+  title = "deployment tools used by rails web apps"
+  description = "Find Rails web apps deployed with tools like Capistrano and Kamal, enabling smooth deployment and scalability."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @deployment_tools.each do |deployment_tool| %>
+        <tr>
+          <td>
+            <%= link_to deployment_tool.name.downcase, deployment_tool_tech_stack_path(deployment_tool), class: "tag" %>
+          </td>
+          <td>
+            <% if deployment_tool.site_count > 0 %>
+              <%= deployment_tool.site_count %> <%= "web app".pluralize(deployment_tool.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

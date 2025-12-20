@@ -1,0 +1,72 @@
+<%
+  title = "rails web apps by technology"
+  description = "A categorized list of web apps built with Ruby on Rails. Discover web apps built with Ruby on Rails and explore what's possible to build with it."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: ruby_on_rails_websites_url,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <ul class="ul">
+    <li>
+      <%= link_to "databases", database_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "background job libraries", background_job_library_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "template engines", template_engine_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "testing tools", testing_tool_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "asset pipelines", asset_pipeline_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "cache store implementations", cache_store_implementation_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "css frameworks", css_framework_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "css preprocessors", css_processor_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "frontend frameworks", frontend_framework_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "javascript bundlers", js_bundler_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "javascript transpilers", js_transpiler_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "real-time frameworks", realtime_framework_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "ruby implementations", ruby_implementation_tech_stacks_path, class: "no-visited" %>
+    </li>
+    <li>
+      <%= link_to "deployment tools", deployment_tool_tech_stacks_path, class: "no-visited" %>
+    </li>
+  </ul>
+
+</article>

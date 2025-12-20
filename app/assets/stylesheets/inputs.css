@@ -1,0 +1,60 @@
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  background-color: var(--gray-100);
+  border: 1px solid var(--gray-400);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  padding: 2px 6px;
+  color: var(--text);
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  background: var(--gray-200);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+textarea,
+select[multiple] {
+  border: 1px solid var(--gray-400);
+  border-radius: 2px;
+  font-size: 1rem;
+  font-family: var(--font-serif);
+  padding: 2px;
+  background: var(--background);
+  color: var(--text);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+textarea:focus,
+select[multiple]:focus {
+  outline: 1px solid var(--blue-600);
+}

@@ -1,0 +1,142 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "1ba441237b204106123d1d7d5f7ac46994884df79ef47111805cd2f5ee7e5fb9",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/ruby_on_rails_websites/show.html.erb",
+      "line": 268,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Visit the #{Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).title} web app\", Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).url, :target => :_blank, :class => \"block text-center text-sm px-5 py-3 font-bold uppercase tracking-wide rounded-full shadow-sm text-gray-800 border border-gray-300 hover:bg-gray-50 active:bg-gray-100\", :rel => \"noopener nofollow noreferrer\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "RubyOnRailsWebsitesController",
+          "method": "show",
+          "line": 64,
+          "file": "app/controllers/ruby_on_rails_websites_controller.rb",
+          "rendered": {
+            "name": "ruby_on_rails_websites/show",
+            "file": "app/views/ruby_on_rails_websites/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "ruby_on_rails_websites/show"
+      },
+      "user_input": "Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "399dfdccb2c295aa906d47623fdb01c9fb4bd9233da7fc602276bfb8158ddefa",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/ruby_on_rails_websites/show.html.erb",
+      "line": 151,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).url.sub(/https?:\\/\\//, \"\"), Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).url, :target => :_blank, :class => \"text-blue-600 hover:underline\", :rel => \"noopener nofollow noreferrer\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "RubyOnRailsWebsitesController",
+          "method": "show",
+          "line": 64,
+          "file": "app/controllers/ruby_on_rails_websites_controller.rb",
+          "rendered": {
+            "name": "ruby_on_rails_websites/show",
+            "file": "app/views/ruby_on_rails_websites/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "ruby_on_rails_websites/show"
+      },
+      "user_input": "Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Denial of Service",
+      "warning_code": 76,
+      "fingerprint": "cf3e748e144fdf9b593eb1680560fc02600c3567e922dc5966ed1c1f748b87a0",
+      "check_name": "RegexDoS",
+      "message": "Model attribute used in regular expression",
+      "file": "app/views/ruby_on_rails_websites/show.html.erb",
+      "line": 3,
+      "link": "https://brakemanscanner.org/docs/warning_types/denial_of_service/",
+      "code": "/\\A#{Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).title} is an? /",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "RubyOnRailsWebsitesController",
+          "method": "show",
+          "line": 64,
+          "file": "app/controllers/ruby_on_rails_websites_controller.rb",
+          "rendered": {
+            "name": "ruby_on_rails_websites/show",
+            "file": "app/views/ruby_on_rails_websites/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "ruby_on_rails_websites/show"
+      },
+      "user_input": "Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).title",
+      "confidence": "Medium",
+      "cwe_id": [
+        20,
+        185
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "d28ed80543ab7d268389b37392b3bb1644569795b9d858a681ff7b244010980b",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/ruby_on_rails_websites/show.html.erb",
+      "line": 199,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).repo_url.sub(/https?:\\/\\//, \"\"), Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).repo_url, :target => :_blank, :class => \"text-blue-600 hover:underline\", :rel => \"noopener nofollow noreferrer\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "RubyOnRailsWebsitesController",
+          "method": "show",
+          "line": 64,
+          "file": "app/controllers/ruby_on_rails_websites_controller.rb",
+          "rendered": {
+            "name": "ruby_on_rails_websites/show",
+            "file": "app/views/ruby_on_rails_websites/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "ruby_on_rails_websites/show"
+      },
+      "user_input": "Site.friendly.where.not(:published_at => nil).find(params.expect(:id)).repo_url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "7.0.0"
+}

@@ -1,0 +1,36 @@
+<%
+  title = "my upvotes"
+
+  set_meta_tags(
+    title: title,
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "shared/flashes" %>
+    <h1><%= title %></h1>
+  </header>
+
+  <section>
+    <% if @upvotes.any? %>
+      <ul class="site-list">
+        <% @upvotes.each do |upvote| %>
+          <li><%= render "shared/web_app", site: upvote.site %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="no-data">you haven't upvoted any web apps yet</p>
+    <% end %>
+  </section>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %>
+      <%= link_to "◂ prev", upvotes_path(page: @current_page - 1), class: "no-visited" %>
+    <% end %>
+    <% if @next_page %>
+      <%= link_to "next ▸", upvotes_path(page: @current_page + 1), class: "no-visited" %>
+    <% end %>
+  </div>
+</article>
+

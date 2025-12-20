@@ -1,0 +1,88 @@
+<%
+  title = "sign up for an account"
+  description = "Sign up for an account to submit your Rails web apps, upvote your favorites, and discover new web apps built with Ruby on Rails."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<% unless turnstile_allowed? %>
+  <%= content_for :head do %>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <% end %>
+<% end %>
+
+<article class="article">
+  <%= render "shared/flashes" %>
+
+  <header>
+    <h1><%= title %></h1>
+    <p>
+      <%= google_sign_in_button(
+        'sign in with google',
+        proceed_to: sign_in_google_url,
+        data: { turbo: false },
+      ) %>
+    </p>
+    <p><small>or, register with your email address</small></p>
+  </header>
+
+  <section>
+    <h2>sign up with email</h2>
+
+    <%= form_with(model: @user, url: registration_url, class: "mt-2 form") do |form| %>
+      <div class="form-row">
+        <%= form.label :email_address do %>
+          email:
+        <% end %>
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address] %>
+      </div>
+
+      <div class="form-row">
+        <%= form.label :password do %>
+          password:
+        <% end %>
+        <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72 %>
+      </div>
+
+      <div class="form-row">
+        <%= form.label :password_confirmation do %>
+          confirm password:
+        <% end %>
+        <%= form.password_field :password_confirmation, required: true, autocomplete: "current-password", maxlength: 72 %>
+      </div>
+
+      <div class="form-row">
+        <div></div>
+        <div class="cf-turnstile mt-2" data-sitekey="<%= ENV["TURNSTILE_SITE_KEY"] %>"></div>
+      </div>
+
+      <div class="mt-1">
+        <%= form.submit "create account" %>
+      </div>
+    <% end %>
+
+    <div class="mt-2">
+      <p>already have an account? <%= link_to "sign in", new_session_path, class: "no-visited" %></p>
+    </div>
+
+    <p>
+      <small>
+        by continuing, you agree to our
+        <%= link_to "terms of service", terms_path, class: "no-visited" %>
+        and
+        <%= link_to "privacy policy", privacy_path, class: "no-visited" %>
+      </small>
+    </p>
+  </section>
+</article>

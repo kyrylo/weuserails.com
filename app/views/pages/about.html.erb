@@ -1,0 +1,89 @@
+<%
+  title = "About We Use Rails"
+  description = "We Use Rails is a curated list of Ruby on Rails web apps. We help people curious about Rails discover real-world applications and businesses built with Rails."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <h1><%= title %></h1>
+    <p><%= description %></p>
+  </header>
+
+  <section>
+    <h2>Rails powers the world's best web apps</h2>
+
+    <p>
+      "From HELLO WORLD to IPO" isn’t just a catchy slogan — it’s a reality for
+      countless companies that have used Ruby on Rails to build and scale their
+      products. Since its debut in 2004, Rails has become a favorite among
+      developers for its simplicity, productivity, and powerful framework.
+    </p>
+
+    <p>
+      When people ask, “Who uses Rails?”, the usual examples are industry giants like
+      Basecamp, GitHub, and Shopify. But they’re just the tip of the iceberg. Rails
+      powers thousands of applications across a diverse range of businesses — from
+      scrappy startups to massive enterprises.
+    </p>
+
+    <p>
+      We Use Rails showcases a growing list of businesses and projects powered by
+      Ruby on Rails. Whether you’re a developer seeking inspiration or a business
+      exploring frameworks for your next project, our platform highlights the
+      versatility and success of Rails. Discover who’s using Rails and learn how
+      it can power your next big idea.
+    </p>
+  </section>
+
+  <section>
+    <h2>Our mission</h2>
+    <p>
+      We curate and showcase the diverse range of businesses and projects
+      powered by Ruby on Rails. By highlighting real-world Rails
+      applications across industries, we demonstrate the framework's
+      versatility and continued relevance in modern web development.
+    </p>
+  </section>
+
+  <section>
+    <h2>What we offer</h2>
+    <ul class="ul">
+      <li>A searchable directory of Rails-powered web apps</li>
+      <li>Detailed technical stack information for each project</li>
+      <li>Categorization by industry and application type</li>
+      <li>Submission form for new Rails web apps</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Why Rails matters</h2>
+    <p>
+      While Basecamp, GitHub, and Shopify are well-known Rails success
+      stories, thousands of other businesses rely on Rails daily. Our
+      platform helps developers discover these applications, learn from
+      their implementations, and find inspiration for their next projects.
+    </p>
+  </section>
+
+  <section>
+    <h2>Join our directory</h2>
+    <p>
+      Are you building with Rails? <%= link_to "Submit your web app", new_session_path %> to join our growing
+      collection of Rails success stories. Help us showcase how Rails
+      continues to power innovation across the web.
+    </p>
+  </section>
+</article>

@@ -1,0 +1,50 @@
+<%
+  title = "css preprocessors used by rails web apps"
+  description = "Browse Rails web apps that use preprocessors like Sass and Less to write cleaner, reusable, and more maintainable CSS code."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <% if @css_processors.any? %>
+      <table class="table">
+        <% @css_processors.each do |css_processor| %>
+          <tr>
+            <td>
+              <%= link_to css_processor.name.downcase, css_processor_tech_stack_path(css_processor), class: "tag" %>
+            </td>
+            <td>
+              <% if css_processor.site_count > 0 %>
+                <%= css_processor.site_count %> <%= "web app".pluralize(css_processor.site_count) %>
+              <% else %>
+                &mdash;
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <p class="no-data">no rails web apps use a preprocessor</p>
+    <% end %>
+  </section>
+</article>

@@ -1,0 +1,254 @@
+<%
+  title = Regexp.escape(@site.title)
+  seo_title = @site.tagline.sub(/\A#{title} is an? /i, '').capitalize
+  seo_description = smart_meta_description(@site.description)
+
+  set_meta_tags(
+    title: seo_title,
+    site: "#{@site.title}",
+    description: seo_description,
+    og: {
+      title: seo_title,
+      description: seo_description,
+      type: "website",
+      url: request.original_url,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@weuserails",
+      title: seo_title,
+      description: seo_description,
+    },
+  )
+%>
+
+<article>
+  <div class="site-list">
+    <div class="site-list__li">
+      <div class="site-list__marker"></div>
+      <div class="site-list__content">
+        <div class="site-list__header">
+          <h1>
+            <%= @site.tagline %><small class="site-list__title">(<%= link_to strip_url(@site.url), add_ref_param(@site.url) %>)</small>
+          </h1>
+
+          <div class="pagination">
+            <% if @prev_site %>
+              <%= link_to "◂ prev", web_app_path(@prev_site), class: "no-visited" %>
+            <% end %>
+            <% if @next_site %>
+              <%= link_to "next ▸", web_app_path(@next_site), class: "no-visited" %>
+            <% end %>
+          </div>
+        </div>
+
+        <ul class="tag-list">
+          <% @site.categories.each do |category| %>
+            <li><%= link_to category.name, category_path(category), class: "tag" %></li>
+          <% end %>
+        </ul>
+
+        <%= render "shared/site_meta", site: @site %>
+
+        <div class="site-data">
+          <% @site.description.split("\n").each do |section| %>
+            <p class="site-data__description"><%= section %></p>
+          <% end %>
+
+          <dl class="tech-stack">
+            <% if @site.databases.any? %>
+              <dt>databases</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.databases.each do |it| %>
+                    <li><%= link_to(it.name, database_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.background_job_libraries.any? %>
+              <dt>background job libraries</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.background_job_libraries.each do |it| %>
+                    <li><%= link_to(it.name, background_job_library_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.testing_tools.any? %>
+              <dt>testing tools</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.testing_tools.each do |it| %>
+                    <li><%= link_to(it.name, testing_tool_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.frontend_frameworks.any? %>
+              <dt>frontend frameworks</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.frontend_frameworks.each do |it| %>
+                    <li><%= link_to(it.name, frontend_framework_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.deployment_tools.any? %>
+              <dt>deployment tools</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.deployment_tools.each do |it| %>
+                    <li><%= link_to(it.name, deployment_tool_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.js_bundlers.any? %>
+              <dt>js bundlers</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.js_bundlers.each do |it| %>
+                    <li><%= link_to(it.name, js_bundler_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.js_transpilers.any? %>
+              <dt>js transpilers</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.js_transpilers.each do |it| %>
+                    <li><%= link_to(it.name, js_transpiler_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.css_processors.any? %>
+              <dt>css processors</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.css_processors.each do |it| %>
+                    <li><%= link_to(it.name, css_processor_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.css_frameworks.any? %>
+              <dt>css frameworks</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.css_frameworks.each do |it| %>
+                    <li><%= link_to(it.name, css_framework_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.asset_pipelines.any? %>
+              <dt>asset pipelines</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.asset_pipelines.each do |it| %>
+                    <li><%= link_to(it.name, asset_pipeline_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.template_engines.any? %>
+              <dt>template engines</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.template_engines.each do |it| %>
+                    <li><%= link_to(it.name, template_engine_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.cache_store_implementations.any? %>
+              <dt>cache store implementations</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.cache_store_implementations.each do |it| %>
+                    <li><%= link_to(it.name, cache_store_implementation_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.realtime_frameworks.any? %>
+              <dt>realtime frameworks</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.realtime_frameworks.each do |it| %>
+                    <li><%= link_to(it.name, realtime_framework_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+
+            <% if @site.ruby_implementations.any? %>
+              <dt>ruby implementations</dt>
+              <dd>
+                <ul class="tag-list">
+                  <% @site.ruby_implementations.each do |it| %>
+                    <li><%= link_to(it.name, ruby_implementation_tech_stack_path(it.slug), class: "tag") %></li>
+                  <% end %>
+                </ul>
+              </dd>
+            <% end %>
+          </dl>
+        </div>
+
+        <div class="pagination">
+          <% if @prev_site %>
+            <%= link_to "◂ prev", web_app_path(@prev_site), class: "no-visited" %>
+          <% end %>
+          <% if @next_site %>
+            <%= link_to "next ▸", web_app_path(@next_site), class: "no-visited" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<% if @similar_sites.any? %>
+  <div class="other-sites">
+    <h2 class="other-sites__header">similar rails web apps</h2>
+    <ul class="site-list">
+      <% @similar_sites.each do |site| %>
+        <li>
+          <div class="site-list__marker"></div>
+          <div class="site-list__content">
+            <div>
+              <%= link_to web_app_path(site) do %><%= site.tagline %><% end %><small class="site-list__title">(<%= link_to strip_url(site.url), add_ref_param(site.url) %>)</small>
+            </div>
+
+            <ul class="tag-list">
+              <% site.categories.each do |category| %>
+                <li>
+                  <%= link_to category.name, category_path(category), class: "tag" %>
+                </li>
+              <% end %>
+            </ul>
+            <%= render "shared/site_meta", site: site %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+

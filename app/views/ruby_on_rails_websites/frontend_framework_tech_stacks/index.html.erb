@@ -1,0 +1,46 @@
+<%
+  title = "frontend frameworks used by rails web apps"
+  description = "Find Rails web apps integrated with frontend frameworks like React or Vue.js for building interactive and dynamic user interfaces."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @frontend_frameworks.each do |frontend_framework| %>
+        <tr>
+          <td>
+            <%= link_to frontend_framework.name.downcase, frontend_framework_tech_stack_path(frontend_framework), class: "tag" %>
+          </td>
+          <td>
+            <% if frontend_framework.site_count > 0 %>
+              <%= frontend_framework.site_count %> <%= "web app".pluralize(frontend_framework.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

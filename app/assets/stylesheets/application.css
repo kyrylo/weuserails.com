@@ -1,0 +1,148 @@
+:root {
+  --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia,
+    "Times New Roman", Times, serif;
+}
+
+html,
+body {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  background: var(--background);
+  color: var(--text);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: auto;
+}
+
+strong {
+  font-weight: bold;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 2rem 0;
+}
+
+small {
+  font-size: 0.9rem;
+}
+
+.main {
+  max-width: 1024px;
+  margin: 1rem auto 0;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: max-content 0.3fr;
+  gap: 0.25rem 1rem;
+}
+
+.form-row {
+  display: contents;
+}
+
+.no-data {
+  color: var(--gray-600);
+  font-style: italic;
+}
+
+.site-data {
+  margin: 1rem 0;
+}
+
+.site-data__description {
+  margin-bottom: 1rem;
+  max-width: 80ch;
+}
+
+.tech-stack dt {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.tech-stack dd {
+  margin-bottom: 1rem;
+}
+
+footer {
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--gray-200);
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+footer a,
+footer a:visited {
+  color: var(--link-color-alt);
+}
+
+.other-sites__header {
+  margin: 2rem 0 0.5rem;
+  font-weight: bold;
+}
+
+form.button_to {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.search__input {
+  width: 100%;
+  max-width: 300px;
+}
+
+.sign-out-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: var(--link-color-alt);
+}
+
+.sign-out-link:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+.pagination a {
+  display: inline-block;
+}

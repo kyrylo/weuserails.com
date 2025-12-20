@@ -1,0 +1,68 @@
+<%
+  title = "Disclaimer"
+  description = "We Use Rails provides the content on this website purely for informational purposes and should not be interpreted as legal, financial, or medical guidance."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <h1><%= title %></h1>
+    <p><%= description %></p>
+  </header>
+
+  <section>
+    <h2>General information</h2>
+    <ul class="ul">
+      <li><strong>Purpose:</strong> The content on this website is solely for <strong>informational</strong> purposes. It should not be taken as legal, financial, or medical advice.</li>
+      <li><strong>Professional advice:</strong> Before making any decisions based on this content, consult with a lawyer for legal matters, a financial advisor for financial queries, and a medical professional for health-related issues.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Accuracy & completeness</h2>
+    <ul class="ul">
+      <li><strong>No guarantee:</strong> The accuracy, completeness, or suitability of the information on this website for any particular purpose is not guaranteed.</li>
+      <li><strong>Third-party sources:</strong> We hold no responsibility for the accuracy or completeness of information sourced from third parties.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Liability</h2>
+    <ul class="ul">
+      <li><strong>Risks:</strong> Any use of the information on this website is at <strong>your own risk</strong>.</li>
+      <li><strong>No liability:</strong> We shall not be liable for any consequences including but not limited to loss of profits, data, or other losses resulting from the use of this website.</li>
+      <li><strong>Legal actions:</strong> Users acknowledge that we bear no liability for any legal actions arising from their use of this website.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Third-party links & content</h2>
+    <ul class="ul">
+      <li><strong>External links:</strong> This website may provide links to external sites. We neither control nor are responsible for the content, policies, or practices of such third-party web apps.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Agreement</h2>
+    <ul class="ul">
+      <li><strong>Terms:</strong> By using this website, you agree to this disclaimer and all related terms of use.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>If you have any questions regarding this disclaimer, contact us via email: help@weuserails.com</p>
+  </section>
+</article>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta charset="UTF-8">
+    <link rel="canonical" href="<%= request.base_url + request.path %>">
+
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : "We Use Rails" %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : "A categorized list of web apps built with Ruby on Rails. Discover web apps built with Ruby on Rails and explore what's possible to build with it." %>">
+    <meta property="og:image" content="<%= asset_url('og.png') %>">
+    <meta property="og:site_name" content="We Use Rails">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for?(:twitter_title) ? yield(:twitter_title) : "We Use Rails" %>">
+    <meta name="twitter:description" content="<%= content_for?(:twitter_description) ? yield(:twitter_description) : "A categorized list of web apps built with Ruby on Rails. Discover web apps built with Ruby on Rails and explore what's possible to build with it." %>">
+    <meta name="twitter:image" content="<%= asset_url('og.png') %>">
+    <meta name="twitter:site" content="@kyrylosilin">
+
+    <%= yield :head %>
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%= render "layouts/favicons" %>
+
+    <%= display_meta_tags(default_meta_tags) %>
+    <%= schema_dot_org %>
+
+    <% if Rails.env.production? %>
+      <%= render "layouts/plausible" %>
+    <% end %>
+  </head>
+
+  <body>
+    <main class="main">
+      <%= render "layouts/nav" %>
+
+      <div class="mt-4">
+        <%= yield %>
+      </div>
+
+      <%= render "layouts/footer" %>
+    </main>
+  </body>
+</html>

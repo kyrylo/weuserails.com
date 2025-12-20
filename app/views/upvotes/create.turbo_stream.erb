@@ -1,0 +1,5 @@
+<%= turbo_stream.update(dom_id(@site)) do %>
+  <%= render partial: "shared/web_app", locals: {
+    site: @site,
+  } %>
+<% end %>

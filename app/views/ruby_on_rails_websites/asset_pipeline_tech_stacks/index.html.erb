@@ -1,0 +1,43 @@
+<%
+  title = "rails web apps using asset pipelines"
+  description = "View Rails web apps that manage and optimize static assets like JavaScript, CSS, and images using Rails' asset pipeline."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+    <h1><%= title %></h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @asset_pipelines.each do |asset_pipeline| %>
+        <tr>
+          <td>
+            <%= link_to asset_pipeline.name.downcase, asset_pipeline_tech_stack_path(asset_pipeline), class: "tag" %>
+          </td>
+          <td>
+            <% if asset_pipeline.site_count > 0 %>
+              <%= asset_pipeline.site_count %> <%= "web app".pluralize(asset_pipeline.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

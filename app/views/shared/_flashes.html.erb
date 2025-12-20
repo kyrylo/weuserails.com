@@ -1,0 +1,7 @@
+<% if notice = flash[:notice] %>
+  <div class="mb-2 text-green-600"><%= notice %></div>
+<% end %>
+
+<% if notice = flash[:alert] %>
+  <div class="mb-2 text-red-600"><%= alert %></div>
+<% end %>

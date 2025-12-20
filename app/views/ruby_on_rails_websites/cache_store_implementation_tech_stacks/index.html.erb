@@ -1,0 +1,46 @@
+<%
+  title = "cache store implementations used by rails web apps"
+  description = "Explore Rails web apps that improve performance with caching solutions like Redis or Solid Cache, reducing load times and server strain."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @cache_store_implementations.each do |cache_store_implementation| %>
+        <tr>
+          <td>
+            <%= link_to cache_store_implementation.name.downcase, cache_store_implementation_tech_stack_path(cache_store_implementation), class: "tag" %>
+          </td>
+          <td>
+            <% if cache_store_implementation.site_count > 0 %>
+              <%= cache_store_implementation.site_count %> <%= "web app".pluralize(cache_store_implementation.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

@@ -1,0 +1,402 @@
+<%= form_with(model: site) do |form| %>
+  <% if site.errors.any? %>
+    <div class="text-red-600">
+      <h2><%= pluralize(site.errors.count, "error") %> prohibited this web app from being saved:</h2>
+      <ul>
+        <% site.errors.each do |error| %>
+          <li><%= error.full_message.downcase %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p><sup class="text-red-600">*</sup> &mdash; required fields</p>
+
+  <section>
+    <div class="form-row">
+      <div>
+        <%= form.label(:title, class: "font-bold") do %>
+          web app name<sup class="text-red-600">*</sup>
+        <% end %>
+      </div>
+      <div class="mt-1">
+        <%= form.text_field(
+          :title,
+          required: true,
+          autofocus: true,
+          autocomplete: "off",
+          placeholder: "example: GitHub",
+          class: "w-full",
+        ) %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:url, class: "font-bold") do %>
+          url<sup class="text-red-600">*</sup>
+        <% end %>
+      </div>
+      <div class="mt-1">
+        <%= form.text_field(
+          :url,
+          required: true,
+          autofocus: false,
+          autocomplete: "off",
+          placeholder: "https://github.com",
+          class: "w-full",
+        ) %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:tagline, class: "font-bold") do %>
+          tagline<sup class="text-red-600">*</sup>
+        <% end %>
+        <div>
+          <small>for best seo results, try to keep it under 60 characters.</small>
+        </div>
+      </div>
+      <div class="mt-1">
+        <%= form.text_field(
+          :tagline,
+          required: true,
+          autofocus: false,
+          autocomplete: "off",
+          placeholder: "example: Build and ship software on a single, collaborative platform",
+          class: "w-full",
+        ) %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:description, class: "font-bold") do %>
+          description<sup class="text-red-600">*</sup>
+        <% end %>
+        <div>
+          <small>at least three paragraphs are recommended.</small>
+        </div>
+      </div>
+      <div class="mt-1">
+        <%= form.text_area(
+          :description,
+          required: true,
+          autofocus: false,
+          rows: 4,
+          class: "w-full",
+          placeholder: "Example: GitHub is a web-based platform for version control and collaboration, enabling developers to manage code, track changes, and work on projects together. Built on Git, it hosts repositories, provides tools for issue tracking, pull requests, and CI/CD, and supports open-source and private projects.",
+        ) %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:category_ids, class: "font-bold") do %>
+          categories<sup class="text-red-600">*</sup>
+        <% end %>
+      </div>
+
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= categories.to_json %>"
+        data-multiselect-selected-value="<%= selected_categories.to_json %>"
+        data-placeholder="filter categories&hellip;"
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[category_ids][]" id="site_category_ids"></select>
+      </div>
+      <small>select up to five categories.</small>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:year_launched, class: "font-bold") do %>
+          year launched<sup class="text-red-600">*</sup>
+        <% end %>
+      </div>
+      <div class="mt-1">
+        <%= form.number_field(
+          :year_launched,
+          required: true,
+          placeholder: Time.current.year,
+          min: 2004,
+          max: Date.today.year,
+        ) %>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div>
+      <div class="mt-2 font-bold">is this web app open-source?</div>
+      <div class="mt-1">
+        <label><%= form.radio_button :open_source, true %> Yes</label>
+        <label><%= form.radio_button :open_source, false, checked: true %> No</label>
+      </div>
+    </div>
+
+    <div>
+      <div class="mt-2 font-bold">is this web app nsfw (18+)?</div>
+      <div class="mt-1">
+        <label><%= form.radio_button :nsfw, true %> Yes</label>
+        <label><%= form.radio_button :nsfw, false, checked: true %> No</label>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <p>
+      all fields are optional—leave blank if not relevant, but <strong>more info improves
+      your app's seo</strong>. p.s. missing technology? <%= mail_to "help@weuserails.com", "let us know", class: "no-visited" %>
+    </p>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:ruby_implementation_ids, class: "font-bold") do %>
+          ruby implementations
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= ruby_implementations.to_json %>"
+        data-multiselect-selected-value="<%= selected_ruby_implementations.to_json %>"
+        data-placeholder="search ruby implementations..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[ruby_implementation_ids][]" id="site_ruby_implementation_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:template_engine_ids, class: "font-bold") do %>
+          template engines
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= template_engines.to_json %>"
+        data-multiselect-selected-value="<%= selected_template_engines.to_json %>"
+        data-placeholder="search template engines..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[template_engine_ids][]" id="site_template_engine_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:database_ids, class: "font-bold") do %>
+          databases
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= databases.to_json %>"
+        data-multiselect-selected-value="<%= selected_databases.to_json %>"
+        data-placeholder="search databases..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[database_ids][]" id="site_database_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:background_job_library_ids, class: "font-bold") do %>
+          background job libraries
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= background_job_libraries.to_json %>"
+        data-multiselect-selected-value="<%= selected_background_job_libraries.to_json %>"
+        data-placeholder="search background job libraries..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[background_job_library_ids][]" id="site_background_job_library_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:realtime_framework_ids, class: "font-bold") do %>
+          realtime frameworks
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= realtime_frameworks.to_json %>"
+        data-multiselect-selected-value="<%= selected_realtime_frameworks.to_json %>"
+        data-placeholder="search realtime frameworks..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[realtime_framework_ids][]" id="site_realtime_framework_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:testing_tool_ids, class: "font-bold") do %>
+          testing tools
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= testing_tools.to_json %>"
+        data-multiselect-selected-value="<%= selected_testing_tools.to_json %>"
+        data-placeholder="search testing tools..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[testing_tool_ids][]" id="site_testing_tool_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:asset_pipeline_ids, class: "font-bold") do %>
+          asset pipelines
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= asset_pipelines.to_json %>"
+        data-multiselect-selected-value="<%= selected_asset_pipelines.to_json %>"
+        data-placeholder="search asset pipelines..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[asset_pipeline_ids][]" id="site_asset_pipeline_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:frontend_framework_ids, class: "font-bold") do %>
+          frontend frameworks
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= frontend_frameworks.to_json %>"
+        data-multiselect-selected-value="<%= selected_frontend_frameworks.to_json %>"
+        data-placeholder="search frontend frameworks..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[frontend_framework_ids][]" id="site_frontend_framework_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:js_bundler_ids, class: "font-bold") do %>
+          javascript bundlers and runtimes
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= js_bundlers.to_json %>"
+        data-multiselect-selected-value="<%= selected_js_bundlers.to_json %>"
+        data-placeholder="search JavaScript bundlers and runtimes..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[js_bundler_ids][]" id="site_js_bundler_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:js_transpiler_ids, class: "font-bold") do %>
+          javascript transpilers
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= js_transpilers.to_json %>"
+        data-multiselect-selected-value="<%= selected_js_transpilers.to_json %>"
+        data-placeholder="search JavaScript transpilers..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[js_transpiler_ids][]" id="site_js_transpiler_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:css_framework_ids, class: "font-bold") do %>
+          css frameworks
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= css_frameworks.to_json %>"
+        data-multiselect-selected-value="<%= selected_css_frameworks.to_json %>"
+        data-placeholder="search CSS frameworks..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[css_framework_ids][]" id="site_css_framework_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:css_preprocessor_ids, class: "font-bold") do %>
+          css preprocessors
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= css_preprocessors.to_json %>"
+        data-multiselect-selected-value="<%= selected_css_preprocessors.to_json %>"
+        data-placeholder="search CSS preprocessors..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[css_preprocessor_ids][]" id="site_css_preprocessor_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:cache_store_implementation_ids, class: "font-bold") do %>
+          cache store implementations
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= cache_store_implementations.to_json %>"
+        data-multiselect-selected-value="<%= selected_cache_store_implementations.to_json %>"
+        data-placeholder="search cache store implementations..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[cache_store_implementation_ids][]" id="site_cache_store_implementation_ids"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="mt-2">
+        <%= form.label(:deployment_tool_ids, class: "font-bold") do %>
+          deployment tools
+        <% end %>
+      </div>
+      <div
+        class="mt-1"
+        data-controller="multiselect"
+        data-multiselect-items-value="<%= deployment_tools.to_json %>"
+        data-multiselect-selected-value="<%= selected_deployment_tools.to_json %>"
+        data-placeholder="search deployment tools..."
+      >
+        <select multiple="multiple" class="multiselect__hidden" data-multiselect-target="hidden" name="site[deployment_tool_ids][]" id="site_deployment_tool_ids"></select>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="mt-4">
+      <div><%= form.submit "submit" %></div>
+      <small class="block mt-2 text-center text-gray-500">you can't edit after submitting, so double-check your info.</small>
+    </div>
+  </section>
+<% end %>

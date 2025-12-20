@@ -1,0 +1,22 @@
+.breadcrumbs {
+  font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+  color: var(--link-color);
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs__separator {
+  margin: 0 0.5em;
+}

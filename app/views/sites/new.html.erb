@@ -1,0 +1,59 @@
+<%
+  title = "submit your rails web app"
+
+  set_meta_tags(
+    title: title,
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "shared/flashes" %>
+
+    <h1><%= title %></h1>
+    <p>
+      after you submit, we’ll review and publish your app.<br>
+      you’ll get an email update, and we’ll share it on
+      <a href="https://x.com/weuserails" target="_blank" class="no-visited">x</a>
+      and
+      <a href="https://bsky.app/profile/weuserails.com" target="_blank" class="no-visited">bsky</a>.
+    </p>
+  </header>
+
+  <section>
+    <%= render(
+      "form",
+      site: @site,
+      categories: @categories,
+      selected_categories: @selected_categories,
+      databases: @databases,
+      selected_databases: @selected_databases,
+      background_job_libraries: @background_job_libraries,
+      selected_background_job_libraries: @selected_background_job_libraries,
+      testing_tools: @testing_tools,
+      selected_testing_tools: @selected_testing_tools,
+      frontend_frameworks: @frontend_frameworks,
+      selected_frontend_frameworks: @selected_frontend_frameworks,
+      js_bundlers: @js_bundlers,
+      selected_js_bundlers: @selected_js_bundlers,
+      js_transpilers: @js_transpilers,
+      selected_js_transpilers: @selected_js_transpilers,
+      css_frameworks: @css_frameworks,
+      selected_css_frameworks: @selected_css_frameworks,
+      css_preprocessors: @css_preprocessors,
+      selected_css_preprocessors: @selected_css_preprocessors,
+      asset_pipelines: @asset_pipelines,
+      selected_asset_pipelines: @selected_asset_pipelines,
+      cache_store_implementations: @cache_store_implementations,
+      selected_cache_store_implementations: @selected_cache_store_implementations,
+      ruby_implementations: @ruby_implementations,
+      selected_ruby_implementations: @selected_ruby_implementations,
+      deployment_tools: @deployment_tools,
+      selected_deployment_tools: @selected_deployment_tools,
+      realtime_frameworks: @realtime_frameworks,
+      selected_realtime_frameworks: @selected_realtime_frameworks,
+      template_engines: @template_engines,
+      selected_template_engines: @selected_template_engines,
+    ) %>
+  </section>
+</article>

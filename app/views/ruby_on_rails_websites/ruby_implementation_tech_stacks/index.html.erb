@@ -1,0 +1,46 @@
+<%
+  title = "ruby implementations used by rails web apps"
+  description = "Browse Rails web apps running on Ruby implementations like MRI and JRuby, which interpret Ruby code and optimize app performance."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @ruby_implementations.each do |ruby_implementation| %>
+        <tr>
+          <td>
+            <%= link_to ruby_implementation.name.downcase, ruby_implementation_tech_stack_path(ruby_implementation), class: "tag" %>
+          </td>
+          <td>
+            <% if ruby_implementation.site_count > 0 %>
+              <%= ruby_implementation.site_count %> <%= "web app".pluralize(ruby_implementation.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

@@ -1,0 +1,22 @@
+.table {
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.table th {
+  background: var(--gray-100);
+  font-weight: bold;
+  padding: 0.5rem;
+  color: var(--text);
+}
+
+.table td {
+  padding: 0.25rem 0.75rem 0.25rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--text);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}

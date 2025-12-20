@@ -1,0 +1,46 @@
+<%
+  title = "realtime frameworks used by rails web apps"
+  description = "Discover Rails web apps using real-time frameworks like Action Cable or Pusher to deliver live updates for features like chat and notifications."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @realtime_frameworks.each do |realtime_framework| %>
+        <tr>
+          <td>
+            <%= link_to realtime_framework.name.downcase, realtime_framework_tech_stack_path(realtime_framework), class: "tag" %>
+          </td>
+          <td>
+            <% if realtime_framework.site_count > 0 %>
+              <%= realtime_framework.site_count %> <%= "web app".pluralize(realtime_framework.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

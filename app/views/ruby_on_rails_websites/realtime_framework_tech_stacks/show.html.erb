@@ -1,0 +1,33 @@
+<%
+  title = "rails web apps using the #{@realtime_framework.name.downcase} realtime framework"
+  description = "A categorized list of Ruby on Rails web apps using the #{@realtime_framework.name} real-time framework."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: realtime_framework_tech_stack_url(@realtime_framework.slug),
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+    prev: @prev_page ? realtime_framework_tech_stack_url(@realtime_framework.slug, page: @current_page - 1) : nil,
+    next: @next_page ? realtime_framework_tech_stack_url(@realtime_framework.slug, page: @current_page + 1) : nil
+  )
+%>
+
+<article class="article">
+  <%= render "shared/sites_by_technology", sites: @sites %>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %>
+      <%= link_to "◂ prev", realtime_framework_tech_stack_path(page: @current_page - 1), class: "no-visited" %>
+    <% end %>
+    <% if @next_page %>
+      <%= link_to "next ▸", realtime_framework_tech_stack_path(page: @current_page + 1), class: "no-visited" %>
+    <% end %>
+  </div>
+</article>

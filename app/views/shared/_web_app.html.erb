@@ -1,0 +1,52 @@
+<%= turbo_frame_tag dom_id(site), style: "display: contents;" do %>
+  <% if authenticated? && Current.user.upvotes.exists?(site: site) %>
+    <%= button_to(
+      "",
+      upvote_path(site),
+      method: :delete,
+      params: { site_id: site.slug },
+      remote: true,
+      title: "remove upvote from this rails web app",
+      class: "site-list__marker site-list__marker--voted"
+    ) %>
+  <% else %>
+    <%= button_to(
+      "",
+      upvotes_path,
+      method: :post,
+      params: { site_id: site.slug },
+      remote: true,
+      title: "upvote this rails web app",
+      class: "site-list__marker",
+      data: { turbo_frame: "_top" }
+    ) %>
+  <% end %>
+
+  <div class="site-list__content">
+    <% if site.published_at? %>
+      <div>
+        <%= link_to web_app_path(site), data: { turbo_frame: "_top" } do %><%= site.tagline %><% end %><small class="site-list__title">(<%= link_to strip_url(site.url), add_ref_param(site.url), data: { turbo_frame: "_top" } %>)</small>
+      </div>
+    <% else %>
+      <div>
+        <%= site.tagline %><small class="site-list__title">(<%= link_to strip_url(site.url), add_ref_param(site.url), data: { turbo_frame: "_top" } %>)</small>
+      </div>
+    <% end %>
+
+    <ul class="tag-list">
+      <% site.categories.each do |category| %>
+        <li>
+          <%= link_to category.name, category_path(category), class: "tag", data: { turbo_frame: "_top" } %>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if site.published_at? %>
+      <%= render "shared/site_meta", site: site %>
+    <% else %>
+      <div class="mt-0.5 meta">
+        <span class="draft">waiting for review (not yet published)</span>
+      </div>
+    <% end %>
+  </div>
+<% end %>

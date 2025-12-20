@@ -1,0 +1,35 @@
+<article class="article">
+  <%= render "shared/flashes" %>
+
+  <header>
+    <h1>
+      profile
+    </h1>
+  </header>
+
+  <section>
+    <div>
+      <span>email:</span>
+      <span><%= Current.user.email_address %></span>
+    </div>
+
+    <div>
+      <span>created:</span>
+      <span><%= Current.user.created_at.strftime("%B %d, %Y") %></span>
+    </div>
+  </section>
+
+  <section>
+    <ul>
+      <li>
+        <%= link_to "edit profile", edit_profile_path, class: "no-visited" %>
+      </li>
+      <li>
+        <%= link_to "submissions", sites_path, class: "no-visited" %>
+      </li>
+      <li>
+        <%= link_to "upvoted submissions", upvotes_path, class: "no-visited" %>
+      </li>
+    </ul>
+  </section>
+</article>

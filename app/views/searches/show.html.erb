@@ -1,0 +1,97 @@
+<%
+  title = @query.present? ? "search results for \"#{@query}\"" : "search for rails web apps"
+  description =
+    if @query.present?
+      "Search results for Ruby on Rails web apps on WeUseRails with the keyword \"#{@query}\"."
+    else
+      "Full text search for Ruby on Rails web apps on WeUseRails. Search for web app names, taglines, URLs, and descriptions."
+    end
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: search_url,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+    prev: @prev_page ? search_url(q: @query, page: @current_page - 1) : nil,
+    next: @next_page ? search_url(q: @query, page: @current_page + 1) : nil,
+  )
+%>
+
+<article class="article">
+  <header>
+    <h1><%= title %></h1>
+  </header>
+
+  <%= form_with(url: search_path, method: :get, class: "mt-2 search") do |form| %>
+    <div>
+      <%= form.search_field(
+        :q,
+        placeholder: "name, url, author, or description",
+        autocomplete: "off",
+        autofocus: true,
+        value: @query,
+        class: "search__input"
+      ) %>
+    </div>
+    <%= form.submit "Search", name: nil, class: "mt-1" %>
+  <% end %>
+
+  <% if @results_count > 0 %>
+    <section class="mt-4">
+      <h2>
+        showing <%= @sites.size %> of <%= @results_count %> results
+      </h2>
+
+      <% if @query.present? %>
+        <%= link_to "сlear search", search_path, class: "no-visited" %>
+      <% end %>
+    </section>
+  <% elsif @results_count == 0 && @query.present? %>
+    <section class="mt-4">
+      <h2>
+        showing 0 of 0 results
+      </h2>
+
+      <%= link_to "сlear search", search_path, class: "no-visited" %>
+    </section>
+  <% end %>
+
+  <% if @sites.any? %>
+    <section>
+      <ul class="site-list">
+        <% @sites.each do |site| %>
+          <li><%= render "shared/web_app", site: site %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% elsif @query.nil? %>
+  <% else %>
+    <section>
+      <span class="no-data">no results found</span>
+    </section>
+  <% end %>
+
+  <% if @results_count > 0 %>
+    <section class="mt-4">
+      <h2>
+        showing <%= @sites.size %> of <%= @results_count %> results
+      </h2>
+    </section>
+  <% end %>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %>
+      <%= link_to "◂ prev", search_path(q: @query, page: @current_page - 1), class: "no-visited" %>
+    <% end %>
+    <% if @next_page %>
+      <%= link_to "next ▸", search_path(q: @query, page: @current_page + 1), class: "no-visited" %>
+    <% end %>
+  </div>
+</article>

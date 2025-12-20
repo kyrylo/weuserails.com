@@ -1,0 +1,46 @@
+<%
+  title = "css frameworks used by rails web apps"
+  description = "Discover Rails web apps styled with CSS frameworks like Tailwind CSS and Bootstrap, providing responsive and visually appealing designs."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @css_frameworks.each do |css_framework| %>
+        <tr>
+          <td>
+            <%= link_to css_framework.name.downcase, css_framework_tech_stack_path(css_framework), class: "tag" %>
+          </td>
+          <td>
+            <% if css_framework.site_count > 0 %>
+              <%= css_framework.site_count %> <%= "web app".pluralize(css_framework.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

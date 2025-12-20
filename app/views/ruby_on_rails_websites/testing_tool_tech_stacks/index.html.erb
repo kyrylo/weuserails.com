@@ -1,0 +1,43 @@
+<%
+  title = "rails web apps using testing tools"
+  description = "Find Rails web apps built with robust testing tools like RSpec and Minitest to ensure their code is bug-free and reliable."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    }
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+    <h1><%= title %></h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @testing_tools.each do |testing_tool| %>
+        <tr>
+          <td>
+            <%= link_to testing_tool.name.downcase, testing_tool_tech_stack_path(testing_tool), class: "tag" %>
+          </td>
+          <td>
+            <% if testing_tool.site_count > 0 %>
+              <%= testing_tool.site_count %> <%= "web app".pluralize(testing_tool.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

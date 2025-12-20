@@ -1,0 +1,16 @@
+<header>
+  <%= render "layouts/breadcrumbs" %>
+  <h1><%= title %></h1>
+</header>
+
+<% if sites.any? %>
+  <ul class="mt-4 site-list">
+    <% sites.each do |site| %>
+      <li>
+        <%= render "shared/web_app", site: site %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="no-data">no rails web apps have been added yet</p>
+<% end %>

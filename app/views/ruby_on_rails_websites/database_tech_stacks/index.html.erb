@@ -1,0 +1,46 @@
+<%
+  title = "databases used by rails web apps"
+  description = "Discover Rails web apps categorized by the database systems they use for storing and managing data."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @databases.each do |database| %>
+        <tr>
+          <td>
+            <%= link_to database.name.downcase, database_tech_stack_path(database), class: "tag" %>
+          </td>
+          <td>
+            <% if database.site_count > 0 %>
+              <%= database.site_count %> <%= "web app".pluralize(database.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

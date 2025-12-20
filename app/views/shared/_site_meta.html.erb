@@ -1,0 +1,14 @@
+<div class="mt-0.5 meta">
+  <span><%= site.upvotes.count %> <%= "upvote".pluralize(site.upvotes.count) %></span>
+  by <%= link_to site.title, add_ref_param(site.url), class: "meta__by", data: { turbo_frame: "_top" } %>
+  <%= time_ago_in_words(site.published_at) %> ago
+  |
+  launched in <%= site.year_launched %>
+  <% tags = [] %>
+  <% tags << content_tag(:span, "sponsored", class: "text-yellow-600") if site.sponsored_at? %>
+  <% tags << content_tag(:span, "open source", class: "text-green-600") if site.open_source? %>
+  <% tags << content_tag(:span, "nsfw", class: "text-pink-600") if site.nsfw? %>
+  <% if tags.any? %>
+    | <%= raw tags.join(" ") %>
+  <% end %>
+</div>

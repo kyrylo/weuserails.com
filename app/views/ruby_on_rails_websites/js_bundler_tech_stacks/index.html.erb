@@ -1,0 +1,46 @@
+<%
+  title = "javascript bundlers used by rails web apps"
+  description = "View Rails web apps that streamline their JavaScript workflow with bundlers like Webpack and esbuild, packaging modules for efficient delivery."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @js_bundlers.each do |js_bundler| %>
+        <tr>
+          <td>
+            <%= link_to js_bundler.name.downcase, js_bundler_tech_stack_path(js_bundler), class: "tag" %>
+          </td>
+          <td>
+            <% if js_bundler.site_count > 0 %>
+              <%= js_bundler.site_count %> <%= "web app".pluralize(js_bundler.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

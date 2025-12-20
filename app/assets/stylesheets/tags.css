@@ -1,0 +1,18 @@
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0 0.2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  text-transform: lowercase;
+}
+
+.tag:visited {
+  color: var(--gray-600);
+}

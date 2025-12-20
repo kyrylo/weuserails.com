@@ -1,0 +1,46 @@
+<%
+  title = "javascript transpilers used by rails web apps"
+  description = "Explore Rails web apps using JavaScript transpilers like Babel to convert modern JavaScript into versions compatible with older browsers."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+  )
+%>
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+
+    <h1>
+      <%= title %>
+    </h1>
+  </header>
+
+  <section>
+    <table class="table">
+      <% @js_transpilers.each do |js_transpiler| %>
+        <tr>
+          <td>
+            <%= link_to js_transpiler.name.downcase, js_transpiler_tech_stack_path(js_transpiler), class: "tag" %>
+          </td>
+          <td>
+            <% if js_transpiler.site_count > 0 %>
+              <%= js_transpiler.site_count %> <%= "web app".pluralize(js_transpiler.site_count) %>
+            <% else %>
+              &mdash;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>

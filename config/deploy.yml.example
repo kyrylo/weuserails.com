@@ -1,0 +1,54 @@
+service: we_use_rails
+image: we_use_rails
+
+servers:
+  web:
+    - weuserails.example.com
+
+proxy:
+  ssl: true
+  host: weuserails.example.com
+
+registry:
+  server: localhost:5555
+
+env:
+  secret:
+    - SECRET_KEY_BASE
+    - TELEBUGS_DSN
+    - MAILER_FROM_ADDRESS
+    - GOOGLE_SIGN_IN_CLIENT_ID
+    - GOOGLE_SIGN_IN_CLIENT_SECRET
+    - TELEGRAM_BOT_TOKEN
+    - TELEGRAM_BOT_CHAT_ID
+    - X_API_KEY
+    - X_API_KEY_SECRET
+    - X_ACCESS_TOKEN
+    - X_ACCESS_TOKEN_SECRET
+    - BSKY_HANDLE
+    - BSKY_APP_PASSWORD
+    - MISSION_CONTROL_HTTP_BASIC_AUTH_USER
+    - MISSION_CONTROL_HTTP_BASIC_AUTH_PASSWORD
+    - SMTP_USERNAME
+    - SMTP_PASSWORD
+    - SMTP_ADDRESS
+    - SMTP_DOMAIN
+    - SMTP_AUTHENTICATION
+    - TURNSTILE_SITE_KEY
+    - TURNSTILE_SECRET_KEY
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
+
+volumes:
+  - "/root/we_use_rails-storage:/rails/storage"
+
+asset_path: /rails/public/assets
+
+builder:
+  arch: amd64

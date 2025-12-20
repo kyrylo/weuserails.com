@@ -1,0 +1,49 @@
+<%
+  title = "#{@category.name.downcase} web apps built with rails"
+  description = "A categorized list of #{@category.name} web apps built with Ruby on Rails."
+
+  set_meta_tags(
+    title: title,
+    description: description,
+    canonical: category_url(@category.slug),
+    og: {
+      title: title,
+      description: description,
+    },
+    twitter: {
+      title: title,
+      description: description,
+    },
+    prev: @prev_page ? category_url(@category.slug, page: @current_page - 1) : nil,
+    next: @next_page ? category_url(@category.slug, page: @current_page + 1) : nil
+  )
+%>
+
+
+<article class="article">
+  <header>
+    <%= render "layouts/breadcrumbs" %>
+    <h1><%= title %></h1>
+  </header>
+
+  <section>
+    <% if @sites.any? %>
+      <ul class="site-list">
+        <% @sites.each do |site| %>
+          <li><%= render "shared/web_app", site: site %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="no-data">no rails web apps found in this category yet</p>
+    <% end %>
+  </section>
+
+  <div class="mt-2 pagination">
+    <% if @prev_page %>
+      <%= link_to "◂ prev", category_path(@category.slug, page: @current_page - 1), class: "no-visited" %>
+    <% end %>
+    <% if @next_page %>
+      <%= link_to "next ▸", category_path(@category.slug, page: @current_page + 1), class: "no-visited" %>
+    <% end %>
+  </div>
+</article>
