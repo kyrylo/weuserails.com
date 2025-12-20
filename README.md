@@ -4,6 +4,8 @@
 apps. We help people curious about Rails discover real-world applications and
 businesses built with Rails.
 
+<small><i>[sponsored by [telebugs](https://telebugs.com) - track errors in your rails apps]</i></small>
+
 ## Rails powers the world's best web apps
 
 "From HELLO WORLD to IPO" isn’t just a catchy slogan — it’s a reality for
