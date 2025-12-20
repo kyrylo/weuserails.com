@@ -1,6 +1,6 @@
 # We Use Rails
 
-[We Use Rails](https://weuserails.com) is a curated list of Ruby on Rails web
+[We Use Rails](https://weuserails.com) (WUR) is a curated list of Ruby on Rails web
 apps. We help people curious about Rails discover real-world applications and
 businesses built with Rails.
 
@@ -21,3 +21,7 @@ on Rails. Whether you’re a developer seeking inspiration or a business explori
 frameworks for your next project, our platform highlights the versatility and
 success of Rails. Discover who’s using Rails and learn how it can power your
 next big idea.
+
+## License
+
+WUR is released under the [GNU AGPLv3.0 license](LICENSE).
