@@ -74,7 +74,7 @@ module ApplicationHelper
     host = host.sub(/\Awww\./, "") if host
     host
   rescue URI::InvalidURIError
-    Sentry.capture_message("Invalid URL in strip_url: #{url}")
+    Lapsoss.capture_message("Invalid URL in strip_url: #{url}")
     url
   end
 end

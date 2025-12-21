@@ -27,7 +27,7 @@ gem "meta-tags"
 gem "schema_dot_org"
 gem "google_sign_in"
 gem "friendly_id", "~> 5.6.0"
-gem "sentry-rails"
+gem "lapsoss"
 gem "x", "~> 0.17"
 gem "opengraph_parser"
 
