@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::RubyImplementationTechStacksController < ApplicationC
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-ruby-implementation, name: ruby_implementation_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @ruby_implementations =
       RubyImplementation.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::RubyImplementationTechStacksController < ApplicationC
     add_breadcrumb("ruby implementations")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-ruby-implementation/:id, name: ruby_implementation_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @ruby_implementation = RubyImplementation.friendly.find(params[:id])
     @base_query = @ruby_implementation.sites

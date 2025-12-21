@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::JsBundlerTechStacksController < ApplicationController
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-javascript-bundler, name: js_bundler_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @js_bundlers =
       JsBundler.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::JsBundlerTechStacksController < ApplicationController
     add_breadcrumb("javascript bundlers")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-javascript-bundler/:id, name: js_bundler_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @js_bundler = JsBundler.friendly.find(params[:id])
     @base_query = @js_bundler.sites

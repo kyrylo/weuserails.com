@@ -3,6 +3,9 @@ class CategoriesController < ApplicationController
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /categories, name: categories, via: GET
+  # <rails-lens:routes:end>
   def index
     @current_letter = params[:letter]&.upcase
 
@@ -24,6 +27,9 @@ class CategoriesController < ApplicationController
     add_breadcrumb(@current_letter.present? ? "Categories starting with #{@current_letter}" : "Rails web apps by category")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /:slug-websites-built-with-ruby-on-rails, name: category, via: GET
+  # <rails-lens:routes:end>
   def show
     @category = Category.find_by!(slug: params[:slug])
     @base_query = @category.sites

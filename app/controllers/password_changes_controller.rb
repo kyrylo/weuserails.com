@@ -1,4 +1,7 @@
 class PasswordChangesController < ApplicationController
+  # <rails-lens:routes:begin>
+  # ROUTE: /profile/password, name: profile_password, via: [PATCH, PUT]
+  # <rails-lens:routes:end>
   def update
     if Current.user.authenticate(password_params[:current_password])
       if password_params[:new_password] == password_params[:new_password_confirmation]

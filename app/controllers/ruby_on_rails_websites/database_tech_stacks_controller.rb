@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::DatabaseTechStacksController < ApplicationController
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-database, name: database_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @databases =
       Database.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::DatabaseTechStacksController < ApplicationController
     add_breadcrumb("databases")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-database/:id, name: database_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @database = Database.friendly.find(params[:id])
     @base_query = @database.sites

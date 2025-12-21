@@ -18,6 +18,9 @@ class SitesController < ApplicationController
   before_action :set_ruby_implementations, only: %i[ new create ]
   before_action :set_template_engines, only: %i[ new create ]
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /sites, name: sites, via: GET
+  # <rails-lens:routes:end>
   def index
     @base_query = Site.order(created_at: :desc).where(user: Current.user)
     @results_count = @base_query.count
@@ -25,6 +28,9 @@ class SitesController < ApplicationController
     @sites = @base_query.offset((@current_page - 1) * @items_per_page).limit(@items_per_page)
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /sites/new, name: new_site, via: GET
+  # <rails-lens:routes:end>
   def new
     @site = Site.new
 
@@ -48,6 +54,9 @@ class SitesController < ApplicationController
     @selected_template_engines = []
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /sites, name: sites, via: POST
+  # <rails-lens:routes:end>
   def create
     @site = Site.new(site_params)
 

@@ -3,6 +3,9 @@ class WebAppsController < ApplicationController
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /, name: root, via: GET
+  # <rails-lens:routes:end>
   def index
     @base_query = Site
       .includes(:categories)
@@ -16,6 +19,9 @@ class WebAppsController < ApplicationController
     @sites = @base_query.offset((@current_page - 1) * @items_per_page).limit(@items_per_page)
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/:id, name: web_app, via: GET
+  # <rails-lens:routes:end>
   def show
     @site =
       Site.friendly

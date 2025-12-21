@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::AssetPipelineTechStacksController < ApplicationContro
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-asset-pipeline, name: asset_pipeline_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @asset_pipelines =
       AssetPipeline
@@ -16,6 +19,9 @@ class RubyOnRailsWebsites::AssetPipelineTechStacksController < ApplicationContro
     add_breadcrumb("asset pipelines")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-asset-pipeline/:id, name: asset_pipeline_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @asset_pipeline = AssetPipeline.friendly.find(params[:id])
     @base_query = @asset_pipeline.sites

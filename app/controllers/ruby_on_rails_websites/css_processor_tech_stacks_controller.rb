@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::CssProcessorTechStacksController < ApplicationControl
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-css-preprocessor, name: css_processor_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @css_processors =
       CssProcessor.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::CssProcessorTechStacksController < ApplicationControl
     add_breadcrumb("css preprocessors")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-css-preprocessor/:id, name: css_processor_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @css_processor = CssProcessor.friendly.find(params[:id])
     @base_query = @css_processor.sites

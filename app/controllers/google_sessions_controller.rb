@@ -6,6 +6,9 @@ class GoogleSessionsController < ApplicationController
   before_action :verify_google_sign_in_key, only: :create
   before_action :set_google_identity, only: :create
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /sign_in/google, name: sign_in_google, via: GET
+  # <rails-lens:routes:end>
   def create
     if flash["google_sign_in"]["error"]
       return redirect_to new_session_url, alert: flash["google_sign_in"]["error"]

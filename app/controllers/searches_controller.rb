@@ -3,6 +3,9 @@ class SearchesController < ApplicationController
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /search, name: search, via: GET
+  # <rails-lens:routes:end>
   def show
     @query = params[:q]
 

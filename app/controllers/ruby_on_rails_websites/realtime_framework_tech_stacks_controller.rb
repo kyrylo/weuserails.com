@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::RealtimeFrameworkTechStacksController < ApplicationCo
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-realtime-framework, name: realtime_framework_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @realtime_frameworks =
       RealtimeFramework.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::RealtimeFrameworkTechStacksController < ApplicationCo
     add_breadcrumb("realtime frameworks")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-realtime-framework/:id, name: realtime_framework_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @realtime_framework = RealtimeFramework.friendly.find(params[:id])
     @base_query = @realtime_framework.sites

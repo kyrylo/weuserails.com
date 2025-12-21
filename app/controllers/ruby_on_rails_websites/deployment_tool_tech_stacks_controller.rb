@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::DeploymentToolTechStacksController < ApplicationContr
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-deployment-tool, name: deployment_tool_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @deployment_tools =
       DeploymentTool.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::DeploymentToolTechStacksController < ApplicationContr
     add_breadcrumb("deployment tools")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-deployment-tool/:id, name: deployment_tool_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @deployment_tool = DeploymentTool.friendly.find(params[:id])
     @base_query = @deployment_tool.sites

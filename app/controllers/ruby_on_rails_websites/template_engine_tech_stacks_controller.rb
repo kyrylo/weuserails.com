@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::TemplateEngineTechStacksController < ApplicationContr
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-template-engine, name: template_engine_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @template_engines =
       TemplateEngine
@@ -16,6 +19,9 @@ class RubyOnRailsWebsites::TemplateEngineTechStacksController < ApplicationContr
     add_breadcrumb("template engines")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-template-engine/:id, name: template_engine_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @template_engine = TemplateEngine.friendly.find(params[:id])
     @base_query = @template_engine.sites

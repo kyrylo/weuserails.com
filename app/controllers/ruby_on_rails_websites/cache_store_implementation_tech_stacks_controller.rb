@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::CacheStoreImplementationTechStacksController < Applic
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-cache-store-implementation, name: cache_store_implementation_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @cache_store_implementations =
       CacheStoreImplementation.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::CacheStoreImplementationTechStacksController < Applic
     add_breadcrumb("cache store implementations")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-cache-store-implementation/:id, name: cache_store_implementation_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @cache_store_implementation = CacheStoreImplementation.friendly.find(params[:id])
     @base_query = @cache_store_implementation.sites

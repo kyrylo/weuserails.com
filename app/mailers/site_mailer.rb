@@ -1,3 +1,8 @@
+# <rails-lens:mailers:begin>
+# DELIVERY_METHOD: smtp
+# LOCALES: en
+# DEFAULTS: from: We Use Rails <support@weuserails.com>, layout: mailer
+# <rails-lens:mailers:end>
 class SiteMailer < ApplicationMailer
   include ApplicationHelper
   helper :application

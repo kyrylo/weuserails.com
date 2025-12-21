@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::BackgroundJobLibraryTechStacksController < Applicatio
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-background-job-library, name: background_job_library_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @background_job_libraries =
       BackgroundJobLibrary.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::BackgroundJobLibraryTechStacksController < Applicatio
     add_breadcrumb("background job libraries")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-background-job-library/:id, name: background_job_library_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @background_job_library = BackgroundJobLibrary.friendly.find(params[:id])
     @base_query = @background_job_library.sites

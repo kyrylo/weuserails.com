@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::CssFrameworkTechStacksController < ApplicationControl
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-css-framework, name: css_framework_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @css_frameworks =
       CssFramework.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::CssFrameworkTechStacksController < ApplicationControl
     add_breadcrumb("css frameworks")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-css-framework/:id, name: css_framework_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @css_framework = CssFramework.friendly.find(params[:id])
     @base_query = @css_framework.sites

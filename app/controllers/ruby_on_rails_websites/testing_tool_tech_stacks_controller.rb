@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::TestingToolTechStacksController < ApplicationControll
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-testing-tool, name: testing_tool_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @testing_tools =
       TestingTool
@@ -16,6 +19,9 @@ class RubyOnRailsWebsites::TestingToolTechStacksController < ApplicationControll
     add_breadcrumb("testing tools")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-testing-tool/:id, name: testing_tool_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @testing_tool = TestingTool.friendly.find(params[:id])
     @base_query = @testing_tool.sites

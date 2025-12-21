@@ -3,6 +3,9 @@ class RubyOnRailsWebsites::JsTranspilerTechStacksController < ApplicationControl
 
   allow_unauthenticated_access
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-javascript-transpiler, name: js_transpiler_tech_stacks, via: GET
+  # <rails-lens:routes:end>
   def index
     @js_transpilers =
       JsTranspiler.joins(:sites)
@@ -15,6 +18,9 @@ class RubyOnRailsWebsites::JsTranspilerTechStacksController < ApplicationControl
     add_breadcrumb("javascript transpilers")
   end
 
+  # <rails-lens:routes:begin>
+  # ROUTE: /rails-web-apps/by-javascript-transpiler/:id, name: js_transpiler_tech_stack, via: GET
+  # <rails-lens:routes:end>
   def show
     @js_transpiler = JsTranspiler.friendly.find(params[:id])
     @base_query = @js_transpiler.sites

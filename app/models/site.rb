@@ -1,5 +1,55 @@
+# <rails-lens:schema:begin>
+# table = "sites"
+# database_dialect = "SQLite"
+#
+# columns = [
+#   { name = "id", type = "integer", pk = true, null = false },
+#   { name = "title", type = "string" },
+#   { name = "url", type = "string" },
+#   { name = "description", type = "text" },
+#   { name = "created_at", type = "datetime", null = false },
+#   { name = "updated_at", type = "datetime", null = false },
+#   { name = "tagline", type = "string", null = false },
+#   { name = "open_source", type = "boolean", null = false },
+#   { name = "repo_url", type = "string" },
+#   { name = "nsfw", type = "boolean", null = false },
+#   { name = "year_launched", type = "integer", null = false },
+#   { name = "rails_version_id", type = "integer" },
+#   { name = "user_id", type = "integer", null = false },
+#   { name = "slug", type = "string" },
+#   { name = "published_at", type = "datetime" },
+#   { name = "featured_at", type = "datetime" },
+#   { name = "sponsored_at", type = "datetime" }
+# ]
+#
+# indexes = [
+#   { name = "index_sites_on_user_id", columns = ["user_id"] },
+#   { name = "index_sites_on_slug", columns = ["slug"], unique = true },
+#   { name = "index_sites_on_rails_version_id", columns = ["rails_version_id"] }
+# ]
+#
+# foreign_keys = [
+#   { column = "user_id", references_table = "users", references_column = "id" },
+#   { column = "rails_version_id", references_table = "rails_versions", references_column = "id" }
+# ]
+#
+# [polymorphic]
+# targets = [{ name = "logo_attachment", as = "record" }, { name = "featured_image_attachment", as = "record" }]
+#
+# [callbacks]
+# before_validation = [{ method = "set_slug" }]
+# after_validation = [{ method = "unset_slug_if_invalid" }]
+# before_save = [{ method = "set_slug" }]
+# after_save = [{ method = "proc" }]
+# after_update = [{ method = "create_site_fts" }]
+# after_commit = [{ method = "proc" }]
+#
+# notes = ["upvotes:N_PLUS_ONE", "upvoting_users:N_PLUS_ONE", "rails_version:COUNTER_CACHE", "user:COUNTER_CACHE", "title:NOT_NULL", "url:NOT_NULL", "description:NOT_NULL", "repo_url:NOT_NULL", "slug:NOT_NULL", "title:LIMIT", "url:LIMIT", "tagline:LIMIT", "repo_url:LIMIT", "slug:LIMIT", "description:STORAGE"]
+# <rails-lens:schema:end>
+
+
 class Site < ApplicationRecord
-  has_one :site_fts, foreign_key: "rowid"
+  has_one :site_fts, foreign_key: "rowid", inverse_of: :site
 
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :databases
@@ -17,12 +67,12 @@ class Site < ApplicationRecord
   has_and_belongs_to_many :js_transpilers
   has_and_belongs_to_many :js_bundlers
 
-  has_many :upvotes, dependent: :destroy
+  has_many :upvotes, dependent: :destroy, inverse_of: :site
   has_many :upvoting_users, through: :upvotes, source: :user
 
-  belongs_to :rails_version, optional: true
+  belongs_to :rails_version, optional: true, inverse_of: :sites
 
-  belongs_to :user
+  belongs_to :user, inverse_of: :sites
 
   extend FriendlyId
   friendly_id :title, use: :slugged
