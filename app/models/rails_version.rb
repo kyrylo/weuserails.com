@@ -1,3 +1,3 @@
 class RailsVersion < ApplicationRecord
-  has_and_belongs_to_many :sites
+  has_many :sites, inverse_of: :rails_version
 end

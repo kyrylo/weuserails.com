@@ -1,5 +1,5 @@
 class Site < ApplicationRecord
-  has_one :site_fts, foreign_key: "rowid"
+  has_one :site_fts, foreign_key: "rowid", inverse_of: :site
 
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :databases
@@ -17,12 +17,12 @@ class Site < ApplicationRecord
   has_and_belongs_to_many :js_transpilers
   has_and_belongs_to_many :js_bundlers
 
-  has_many :upvotes, dependent: :destroy
+  has_many :upvotes, dependent: :destroy, inverse_of: :site
   has_many :upvoting_users, through: :upvotes, source: :user
 
-  belongs_to :rails_version, optional: true
+  belongs_to :rails_version, optional: true, inverse_of: :sites
 
-  belongs_to :user
+  belongs_to :user, inverse_of: :sites
 
   extend FriendlyId
   friendly_id :title, use: :slugged
