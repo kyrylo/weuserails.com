@@ -11,8 +11,8 @@
       <% end %>
 
       <ul>
-        <li class="<%= 'active' if current_page?(ruby_on_rails_websites_path) %>">
-          <%= link_to_unless_current "technologies", ruby_on_rails_websites_path, class: "navbar__link" %>
+        <li class="<%= 'active' if current_page?(technologies_path) %>">
+          <%= link_to_unless_current "technologies", technologies_path, class: "navbar__link" %>
         </li>
 
         <li class="<%= 'active' if current_page?(categories_path) %>">
