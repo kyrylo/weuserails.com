@@ -22,7 +22,7 @@ gem "stimulus-rails"
 # Other
 gem "solid_cache"
 gem "thruster", require: false
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.21"
 gem "meta-tags"
 gem "schema_dot_org"
 gem "google_sign_in"
