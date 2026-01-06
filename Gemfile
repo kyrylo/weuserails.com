@@ -28,7 +28,7 @@ gem "schema_dot_org"
 gem "google_sign_in"
 gem "friendly_id", "~> 5.6.0"
 gem "lapsoss"
-gem "x", "~> 0.17"
+gem "x", "~> 0.18"
 gem "opengraph_parser"
 
 group :development, :test do
