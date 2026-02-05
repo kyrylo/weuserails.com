@@ -6,7 +6,7 @@ gem "rails", "~> 8.1.2"
 gem "sqlite3", ">= 2.1"
 
 # Deployment
-gem "puma", "~> 7.1"
+gem "puma", "~> 7.2"
 gem "kamal", require: false
 
 # Jobs
