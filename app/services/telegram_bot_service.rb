@@ -5,7 +5,7 @@ class TelegramBotService < ApplicationService
     super
 
     @message = message
-    @token = ENV["TELEGRAM_BOT_TOKEN"],
+    @token = ENV["TELEGRAM_BOT_TOKEN"]
     @chat_id = ENV["TELEGRAM_BOT_CHAT_ID"]
   end
 
