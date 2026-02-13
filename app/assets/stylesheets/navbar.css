@@ -35,17 +35,8 @@
 .navbar ul li.active,
 .active {
   color: var(--gray-500);
-  font-weight: 700;
 }
 
-.navbar__link {
+.navbar a {
   color: var(--link-color-alt);
-
-  &:visited {
-    color: var(--link-color-alt);
-  }
-}
-
-a.navbar__submit-link {
-  color: var(--link-color);
 }
