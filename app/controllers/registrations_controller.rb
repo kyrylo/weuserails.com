@@ -4,7 +4,7 @@ class RegistrationsController < ApplicationController
   allow_unauthenticated_access
 
   before_action :redirect_if_authenticated, only: %i[ new create ]
-  before_action :verify_turnstile, only: :create, if: -> { Rails.env.production? && !turnstile_allowed? }
+  # before_action :verify_turnstile, only: :create, if: -> { Rails.env.production? && !turnstile_allowed? }
 
   def new
     @user = User.new
@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       ServiceMessages::NewUserJob.perform_later(@user)
       start_new_session_for @user
-      redirect_to new_site_url, notice: "Successfully signed up."
+      redirect_to new_site_url, notice: "successfully signed up."
     else
       redirect_to new_registration_url, alert: @user.errors.first.full_message
     end
