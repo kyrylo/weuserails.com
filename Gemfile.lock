@@ -434,7 +434,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    x (0.18.0)
+    x (0.19.0)
       base64 (>= 0.2)
     zeitwerk (2.7.5)
 
@@ -477,7 +477,7 @@ DEPENDENCIES
   stimulus-rails
   thruster
   turbo-rails
-  x (~> 0.18)
+  x (~> 0.19)
 
 BUNDLED WITH
    2.5.16
