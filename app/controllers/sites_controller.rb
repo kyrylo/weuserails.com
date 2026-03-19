@@ -71,9 +71,25 @@ class SitesController < ApplicationController
     @site.user = Current.user
 
     if @site.save
+      Telesink.track(
+        event: "site.submitted",
+        text: "#{Current.user.full_name} submitted \"#{@site.title}\"",
+        emoji: "🌐",
+        properties: {
+          site_id: @site.id,
+          user_id: @site.user.id,
+          open_source: @site.open_source,
+          nsfw: @site.nsfw,
+          year_launched: @site.year_launched,
+          url: @site.url,
+          tagline: @site.tagline
+        }
+      )
+
       Current.user.upvotes.create!(site: @site)
       ServiceMessages::NewSiteJob.perform_later(@site)
       AutoApproveSiteJob.perform_later(@site)
+
       redirect_to sites_path, notice: "your site has been submitted for review."
     else
       render :new, status: :unprocessable_entity

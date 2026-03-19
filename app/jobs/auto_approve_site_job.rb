@@ -47,6 +47,16 @@ class AutoApproveSiteJob < ApplicationJob
         send_approval_telegram_message(site, checked_page: checked_page)
       else
         send_manual_review_telegram_message(site)
+        Telesink.track(
+          event: "site.needs_manual_review",
+          text: "#{site.title}.\nNo Rails CSRF token detected on main or sign-in pages",
+          emoji: "⚠️",
+          properties: {
+            site_id: site.id,
+            site_title: site.title,
+            site_url: site.url
+          }
+        )
         SiteMailer.with(site: site).rails_confirmation_email.deliver_later
       end
     end
@@ -132,6 +142,19 @@ class AutoApproveSiteJob < ApplicationJob
 
   def approve_site(site, checked_page:)
     site.update!(published_at: Time.current)
+
+    Telesink.track(
+      event: "site.auto_approved",
+      text: site.title,
+      emoji: "✅",
+      properties: {
+        site_id: site.id,
+        site_title: site.title,
+        site_url: site.url,
+        checked_page: checked_page
+      }
+    )
+
     SiteMailer.with(site: site).published_email.deliver_later
     PostNewSiteOnXJob.perform_later(site)
     PostNewSiteOnBskyJob.perform_later(site)

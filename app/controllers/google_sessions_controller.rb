@@ -45,6 +45,34 @@ class GoogleSessionsController < ApplicationController
       password_digest: BCrypt::Password.create(SecureRandom.hex(16))
     )
     ServiceMessages::NewUserJob.perform_now(user)
+
+    display_name =
+      @google_identity.name.presence ||
+      [ @google_identity.given_name, @google_identity.family_name ].compact.join(" ").presence ||
+      @google_identity.email_address
+
+    Telesink.track(
+      event: "user.signed.up",
+      text:  "#{display_name} signed up via Google",
+      emoji: "👤",
+      properties: {
+        user_id:  user.id,
+        email: user.email,
+        name: user.name,
+        full_name: user.full_name,
+        given_name: @google_identity.given_name,
+        family_name: @google_identity.family_name,
+        country: user.country,
+        auth_provider: "google",
+        sign_up_method: "google",
+        verified: user.verified,
+        avatar_url: user.avatar_url,
+        locale: @google_identity.locale,
+        hosted_domain: @google_identity.hosted_domain
+      },
+      occurred_at: user.created_at
+    )
+
     user
   end
 

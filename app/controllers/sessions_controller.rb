@@ -14,6 +14,17 @@ class SessionsController < ApplicationController
     if user = User.authenticate_by(params.permit(:email_address, :password))
       start_new_session_for user
       ServiceMessages::NewUserJob.perform_now(user)
+
+      Telesink.track(
+        event: "user.signed.in",
+        text: "#{user.email_address}",
+        emoji: "🔑",
+        properties: {
+          user_id: user.id,
+          email_address: user.email_address
+        }
+      )
+
       redirect_to after_authentication_url, notice: "you have been signed in."
     else
       redirect_to new_session_url, alert: "Try another email address or password."

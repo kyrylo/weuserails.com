@@ -58,6 +58,17 @@ class PostNewSiteOnXJob < ApplicationJob
     payload = { text: text }
     payload[:media] = { media_ids: [ media_id ] } if media_id
     x_client.post("tweets", payload.to_json)
+
+    Telesink.track(
+      event: "site.posted_to_x",
+      text: "#{site.title} posted to X",
+      emoji: "🐦",
+      properties: {
+        site_id: site.id,
+        title: site.title,
+        url: site.url
+      }
+    )
   end
 
   private

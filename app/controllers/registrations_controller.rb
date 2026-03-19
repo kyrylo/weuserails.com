@@ -13,8 +13,18 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      ServiceMessages::NewUserJob.perform_later(@user)
       start_new_session_for @user
+      ServiceMessages::NewUserJob.perform_later(@user)
+      Telesink.track(
+        event: "user.signed.up",
+        text: "#{@user.full_name} (#{@user.nickname}) signed up",
+        emoji: "👤",
+        properties: {
+          sign_up_method: "email",
+          verified: @user.verified
+        }
+      )
+
       redirect_to new_site_url, notice: "successfully signed up."
     else
       redirect_to new_registration_url, alert: @user.errors.first.full_message

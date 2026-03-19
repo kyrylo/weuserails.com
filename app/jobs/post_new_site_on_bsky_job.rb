@@ -14,5 +14,17 @@ class PostNewSiteOnBskyJob < ApplicationJob
       app_password: ENV["BSKY_APP_PASSWORD"],
     )
     client.post(text, site: site, link_url: link_url)
+
+    Telesink.track(
+      event: "site.posted_to_bluesky",
+      text: "#{site.title} posted to Bluesky",
+      emoji: "🦋",
+      properties: {
+        site_id: site.id,
+        title: site.title,
+        url: site.url,
+        link_url: link_url
+      }
+    )
   end
 end
