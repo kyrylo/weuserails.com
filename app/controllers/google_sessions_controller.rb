@@ -57,8 +57,8 @@ class GoogleSessionsController < ApplicationController
       emoji: "👤",
       properties: {
         user_id:  user.id,
-        email: user.email_address,
-        name: user.name,
+        email_address: user.email_address,
+        nickname: user.nickname,
         full_name: user.full_name,
         given_name: @google_identity.given_name,
         family_name: @google_identity.family_name,
