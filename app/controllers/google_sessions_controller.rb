@@ -62,7 +62,6 @@ class GoogleSessionsController < ApplicationController
         full_name: user.full_name,
         given_name: @google_identity.given_name,
         family_name: @google_identity.family_name,
-        country: user.country,
         auth_provider: "google",
         sign_up_method: "google",
         verified: user.verified,
