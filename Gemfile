@@ -32,6 +32,7 @@ gem "x", "~> 0.19"
 gem "opengraph_parser"
 gem "telesink"
 gem "telesink-activejob"
+gem "telesink-rails-requests"
 
 group :development, :test do
   gem "brakeman", require: false
