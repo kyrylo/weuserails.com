@@ -5,12 +5,20 @@ class SiteMailer < ApplicationMailer
   def published_email
     @site = params[:site]
     @user = @site.user
-    mail(to: @user.email_address, subject: "#{@site.title} now featured on We Use Rails", from: ENV.fetch("SMTP_USERNAME"))
+    mail(
+      to:      @user.email_address,
+      from:    "Kyrylo Silin <help@weuserails.com>",   # ← important
+      subject: "#{@site.title} now featured on We Use Rails"
+    )
   end
 
   def rails_confirmation_email
     @site = params[:site]
     @user = @site.user
-    mail(to: @user.email_address, subject: "#{@site.title} confirmation of Ruby on Rails usage", from: ENV.fetch("SMTP_USERNAME"))
+    mail(
+      to:      @user.email_address,
+      from:    "Kyrylo Silin <help@weuserails.com>",   # ← important
+      subject: "#{@site.title} confirmation of Ruby on Rails usage"
+    )
   end
 end
