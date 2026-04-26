@@ -6,8 +6,8 @@ class SiteMailer < ApplicationMailer
     @site = params[:site]
     @user = @site.user
     mail(
-      to:      @user.email_address,
-      from:    "Kyrylo Silin <help@weuserails.com>",   # ← important
+      to: @user.email_address,
+      from: "Kyrylo Silin <help@weuserails.com>",
       subject: "#{@site.title} now featured on We Use Rails"
     )
   end
@@ -16,8 +16,8 @@ class SiteMailer < ApplicationMailer
     @site = params[:site]
     @user = @site.user
     mail(
-      to:      @user.email_address,
-      from:    "Kyrylo Silin <help@weuserails.com>",   # ← important
+      to: @user.email_address,
+      from: "Kyrylo Silin <help@weuserails.com>",
       subject: "#{@site.title} confirmation of Ruby on Rails usage"
     )
   end
