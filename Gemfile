@@ -31,6 +31,7 @@ gem "lapsoss"
 gem "x", "~> 0.19"
 gem "opengraph_parser"
 gem "telesink"
+gem "telesink-activejob"
 
 group :development, :test do
   gem "brakeman", require: false

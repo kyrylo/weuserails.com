@@ -411,6 +411,10 @@ GEM
     stringio (3.2.0)
     telesink (1.3.0)
       logger (~> 1.7)
+    telesink-activejob (1.0.1)
+      activejob (>= 6.0)
+      activesupport (>= 6.0)
+      telesink (>= 1.3.0)
     thor (1.5.0)
     thruster (0.1.20)
     thruster (0.1.20-aarch64-linux)
@@ -479,9 +483,10 @@ DEPENDENCIES
   sqlite3 (>= 2.1)
   stimulus-rails
   telesink
+  telesink-activejob
   thruster
   turbo-rails
   x (~> 0.19)
 
 BUNDLED WITH
-   4.0.10
+  4.0.10
