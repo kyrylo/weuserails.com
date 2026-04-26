@@ -60,8 +60,8 @@ class PostNewSiteOnXJob < ApplicationJob
     x_client.post("tweets", payload.to_json)
 
     Telesink.track(
-      event: "site.posted_to_x",
-      text: "#{site.title} posted to X",
+      event: "Site posted to X",
+      text: site.title,
       emoji: "🐦",
       properties: {
         site_id: site.id,

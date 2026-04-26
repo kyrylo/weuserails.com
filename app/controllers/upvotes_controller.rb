@@ -9,7 +9,7 @@ class UpvotesController < ApplicationController
     upvote.save
 
     Telesink.track(
-      event: "site.upvoted",
+      event: "Site upvoted",
       text: "#{Current.user.nickname || Current.user.email_address.split('@').first} upvoted \"#{@site.title}\"\n#{@site.url}",
       emoji: "👍",
       properties: {
@@ -26,7 +26,7 @@ class UpvotesController < ApplicationController
     upvote.destroy
 
     Telesink.track(
-      event: "site.downvoted",
+      event: "Site downvoted",
       text: "#{Current.user.nickname || Current.user.email_address.split('@').first} downvoted \"#{@site.title}\"\n#{@site.url}",
       emoji: "👎",
       properties: {

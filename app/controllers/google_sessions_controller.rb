@@ -52,7 +52,7 @@ class GoogleSessionsController < ApplicationController
       @google_identity.email_address
 
     Telesink.track(
-      event: "user.signed.up",
+      event: "User signed up",
       text:  "#{display_name} signed up via Google",
       emoji: "👤",
       properties: {

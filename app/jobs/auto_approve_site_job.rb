@@ -48,7 +48,7 @@ class AutoApproveSiteJob < ApplicationJob
       else
         send_manual_review_telegram_message(site)
         Telesink.track(
-          event: "site.needs_manual_review",
+          event: "Site needs manual review",
           text: "#{site.title}.\nNo Rails CSRF token detected on main or sign-in pages",
           emoji: "⚠️",
           properties: {
@@ -144,7 +144,7 @@ class AutoApproveSiteJob < ApplicationJob
     site.update!(published_at: Time.current)
 
     Telesink.track(
-      event: "site.auto_approved",
+      event: "Site auto approved",
       text: site.title,
       emoji: "✅",
       properties: {

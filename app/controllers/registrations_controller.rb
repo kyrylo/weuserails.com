@@ -16,7 +16,7 @@ class RegistrationsController < ApplicationController
       start_new_session_for @user
       ServiceMessages::NewUserJob.perform_later(@user)
       Telesink.track(
-        event: "user.signed.up",
+        event: "User signed up",
         text: "#{@user.full_name} (#{@user.nickname}) signed up",
         emoji: "👤",
         properties: {

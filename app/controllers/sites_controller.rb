@@ -72,7 +72,7 @@ class SitesController < ApplicationController
 
     if @site.save
       Telesink.track(
-        event: "site.submitted",
+        event: "Site submitted",
         text: "#{Current.user.full_name} submitted \"#{@site.title}\"",
         emoji: "🌐",
         properties: {

@@ -16,8 +16,8 @@ class PostNewSiteOnBskyJob < ApplicationJob
     client.post(text, site: site, link_url: link_url)
 
     Telesink.track(
-      event: "site.posted_to_bluesky",
-      text: "#{site.title} posted to Bluesky",
+      event: "Site posted to Bluesky",
+      text: site.title,
       emoji: "🦋",
       properties: {
         site_id: site.id,
