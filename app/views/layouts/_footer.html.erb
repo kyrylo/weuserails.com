@@ -8,25 +8,29 @@
   </div>
 
   <p>
-    social: <a href="https://x.com/weuserails">x</a> &middot; <a href="https://bsky.app/profile/weuserails.com">bsky</a> |
+    social: <a href="https://x.com/weuserails">x</a> &middot; <a href="https://bsky.app/profile/weuserails.com">bsky</a> &middot;     <%= link_to "github", "https://github.com/kyrylo/weuserails.com", class: "font-bold" %> |
     by: <a href="https://kyrylo.org">kyrylo</a> ~ <a href="https://x.com/kyrylo">x</a> &middot; <a href="https://bsky.app/profile/kyrylo.org">bsky</a> &middot; <a href="https://mastodon.social/@kyrylosilin">mastodon</a>
   </p>
 
   <p class="mt-1">
-    this is open source software:
-
-    <div class="inline-flex gap-1">
-      <a href="https://github.com/kyrylo/weuserails.com" class="font-bold">github</a>
-    </div>
+    sponsor #1:
   </p>
 
-  <p class="mt-1">
-    sponsor:
+  <p class="inline-flex gap-1">
+    <%= image_tag "telebugs.svg", width: 18, height: 18 %>
+    <a href="https://telebugs.com" class="font-bold">telebugs - track errors in your rails web apps</a>
+  </p>
 
-    <div class="inline-flex gap-1">
-      <%= image_tag "telebugs.svg", width: 18, height: 18 %>
-      <a href="https://telebugs.com" class="font-bold">telebugs - track errors in your rails web apps</a>
-    </div>
+  <p class="mt-2">
+    sponsor #2:
+  </p>
+
+  <p class="inline-flex gap-1">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" width=18 height=18>
+      <path fill="#0064e6" d="M0 0h20v20H0z"></path>
+      <path fill="#fff" d="M6.76 3.16H9V16.8H6.76zM10.961 3.16h2.24V16.8h-2.24zM15.16 3.16h2.24V16.8h-2.24zM2.561 3.16h2.24V16.8h-2.24z"></path>
+    </svg>
+    <a href="https://telesink.com" class="font-bold">telesink - real-time event dashboard</a>
   </p>
 
   <div class="mt-2">
@@ -38,28 +42,13 @@
           <a href="https://dockernamegenerator.com" target="_blank">docker name generator</a>
         </li>
         <li>
-          <a href="https://techdebtgame.com" target="_blank">tech debt</a>
-        </li>
-        <li>
-          <%= link_to "f**k this page", "https://fuckthispage.com", target: :_blank %>
-        </li>
-        <li>
           <%= link_to "the html maze", "https://htmlmaze.com", target: :_blank %>
         </li>
         <li>
           <%= link_to "flag match", "https://flagmatch.com", target: :_blank %>
         </li>
         <li>
-          <%= link_to "the em dash", "https://the-em-dash.com", target: :_blank %>
-        </li>
-        <li>
           <%= link_to "just **** use html", "https://justfuckingusehtml.com", target: :_blank %>
-        </li>
-        <li>
-          <%= link_to "coffee world rush", "https://coffeeworldrush.com", target: :_blank %>
-        </li>
-        <li>
-          <%= link_to "emojiwhat", "https://emojiwhat.com", target: :_blank %>
         </li>
       </ul>
     </nav>
