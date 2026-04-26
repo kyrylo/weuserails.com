@@ -156,7 +156,6 @@ class AutoApproveSiteJob < ApplicationJob
     )
 
     SiteMailer.with(site: site).published_email.deliver_later
-    PostNewSiteOnXJob.perform_later(site)
     PostNewSiteOnBskyJob.perform_later(site)
     Rails.logger.info("Auto-approved site: #{site.title} (#{site.url}) via #{checked_page}")
   rescue StandardError => e
