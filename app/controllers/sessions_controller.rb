@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       ServiceMessages::NewUserJob.perform_now(user)
 
       Telesink.track(
-        event: "user.signed.in",
+        event: "User signed in",
         text: "#{user.email_address}",
         emoji: "🔑",
         properties: {
