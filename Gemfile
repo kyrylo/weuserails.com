@@ -30,7 +30,6 @@ gem "friendly_id", "~> 5.6.0"
 gem "lapsoss"
 gem "opengraph_parser"
 gem "telesink"
-gem "telesink-activejob"
 
 group :development, :test do
   gem "brakeman", require: false
